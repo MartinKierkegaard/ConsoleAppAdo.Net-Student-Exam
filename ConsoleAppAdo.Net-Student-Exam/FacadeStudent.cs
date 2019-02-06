@@ -48,7 +48,46 @@ namespace ConsoleAppAdo.Net_Student_Exam
             }
         }
 
-        
+        public static List<StudentGrade> GetAllStudentsGrades()
+        {
+            string sqlStoredProcedure = "GetAllStudentGrade";
+
+            var result = new List<StudentGrade>();
+            using (var databaseConnection = new SqlConnection(conn))
+            {
+                databaseConnection.Open();
+                using (var storedProcedureCommand = new SqlCommand(sqlStoredProcedure, databaseConnection))
+                {
+                    //fortæller at det et en stored procedure der skal kaldes
+                    storedProcedureCommand.CommandType = System.Data.CommandType.StoredProcedure;
+                    using (SqlDataReader reader = storedProcedureCommand.ExecuteReader())
+                    {
+                        if (reader.HasRows)
+                        {
+                            while (reader.Read())
+                            {
+                                string navn = reader.GetString(0);
+                                int studentid = reader.GetInt32(1);
+                                int grade = reader.GetInt32(2);
+
+                                var StudentGrade = new StudentGrade()
+                                {
+                                    StudentId = studentid,
+                                    Navn = navn,
+                                    Grade = grade
+                                };
+
+                                result.Add(StudentGrade);
+                            }
+                        }
+                    }
+                }
+            }
+
+            return result;
+
+
+        }
 
 
     }

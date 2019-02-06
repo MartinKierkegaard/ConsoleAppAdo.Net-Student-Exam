@@ -19,6 +19,13 @@ namespace ConsoleAppAdo.Net_Student_Exam
                 Console.WriteLine($"navn: {item.Navn} mobilnr: {item.MobilNr} ");
             }
 
+            Console.WriteLine("All students and all grades");
+
+            foreach (var studentgrade in FacadeStudent.GetAllStudentsGrades())
+            {
+                Console.WriteLine(studentgrade);
+            }
+
 
             Console.ReadLine();
         }
