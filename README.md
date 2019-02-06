@@ -2,8 +2,8 @@
 Eksempel på brug af Ado.net til at kalde en database på Azure
 
 ## I Facade Student er der følgende metoder
-* **GetAllStudent()**, som henter alle studerende vai SQL
-* **GetAllStudentGrade()**, som henter alle studerende og karakter vai stored procedure
+* **GetAllStudent()**, som henter alle studerende via SQL
+* **GetAllStudentGrade()**, som henter alle studerende og karakter via stored procedure
 * **GetSpecificStudentsGrades(int studentId)**, som henter en spcifik studerende via stored procedure
 * **InsertNewStudent(string navn, string mobilnr)**, som indsætter en ny student i databasen via SQL
 * **InsertNewStudentStoredProcedure(string navn, string mobilnr)**, som indsætter en ny student i databasen via stored procedure
