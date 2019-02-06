@@ -9,6 +9,11 @@ namespace ConsoleAppAdo.Net_Student_Exam
     {
         private static string conn = "Server=tcp:zea2019.database.windows.net,1433;Initial Catalog=student;Persist Security Info=False;User ID=martin;Password=Roskilde1234;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
 
+
+        /// <summary>
+        /// metode som henter alle students fra Azure Database
+        /// </summary>
+        /// <returns>List<Student></returns>
         public static List<Student> GetAllStudents()
         {
             string sql = "Select * from student";
@@ -43,6 +48,7 @@ namespace ConsoleAppAdo.Net_Student_Exam
             }
         }
 
+        
 
 
     }
