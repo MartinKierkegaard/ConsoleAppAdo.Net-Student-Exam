@@ -18,14 +18,12 @@ namespace ConsoleAppAdo.Net_Student_Exam
             {
                 databaseConnection.Open();
                 using (var selectCommand = new SqlCommand(sql, databaseConnection))
-                {
-                    using (SqlDataReader reader = selectCommand.ExecuteReader())
+                using (SqlDataReader reader = selectCommand.ExecuteReader())
                     {
                         if (reader.HasRows)
                         {
                             while (reader.Read())
                             {
-                                //Jeg ønsker kun at arbejde med int derfor caster jeg til int
                                 int studentid = reader.GetInt32(0);
                                 string navn = reader.GetString(1);
                                 string mobilnr = reader.GetString(2);
@@ -41,8 +39,6 @@ namespace ConsoleAppAdo.Net_Student_Exam
                             }
                         }
                     }
-
-                }
                 return result;
             }
         }
