@@ -10,5 +10,5 @@ Eksempel på brug af Ado.net til at kalde en database på Azure
 
 Database script til tabeller og stored procedures samt demo data kan findes i dette gitHub repo
 [GitHub](https://github.com/MartinKierkegaard/StudentExamDB)
-
+:octocat:
 
