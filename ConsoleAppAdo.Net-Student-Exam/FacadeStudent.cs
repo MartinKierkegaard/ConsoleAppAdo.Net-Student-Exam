@@ -87,7 +87,11 @@ namespace ConsoleAppAdo.Net_Student_Exam
             return result;
         }
 
-
+        /// <summary>
+        /// Metode som henter en specifik studerende med givne karakterer
+        /// </summary>
+        /// <param name="studentId">stdentid som der skal fremfindes</param>
+        /// <returns> List<StudentGrade></returns>
         public static List<StudentGrade> GetSpecificStudentsGrades(int studentId)
         {
             string sqlStoredProcedure = "GetSpecificStudentGrade";
@@ -131,6 +135,11 @@ namespace ConsoleAppAdo.Net_Student_Exam
 
 
 
+        /// <summary>
+        /// Indsætter en ny student via SQL 
+        /// </summary>
+        /// <param name="navn">navn</param>
+        /// <param name="mobilnr">mobilnr</param>
         public static void InsertNewStudent(string navn, string mobilnr)
         {
             string sql = "Insert INTO Student (Name,mobilnr) values (@navn,@mobilnr)";
@@ -151,7 +160,11 @@ namespace ConsoleAppAdo.Net_Student_Exam
             }
         }
 
-
+        /// <summary>
+        /// Indsætter en ny student via Stored procedure
+        /// </summary>
+        /// <param name="navn"></param>
+        /// <param name="mobilnr"></param>
         public static void InsertNewStudentStoredProcedure(string navn, string mobilnr)
         {
             string sqlStoredProcedure = "AddPerson";
