@@ -85,9 +85,93 @@ namespace ConsoleAppAdo.Net_Student_Exam
             }
 
             return result;
-
-
         }
+
+
+        public static List<StudentGrade> GetSpecificStudentsGrades(int studentId)
+        {
+            string sqlStoredProcedure = "GetSpecificStudentGrade";
+
+            var result = new List<StudentGrade>();
+            using (var databaseConnection = new SqlConnection(conn))
+            {
+                databaseConnection.Open();
+                using (var storedProcedureCommand = new SqlCommand(sqlStoredProcedure, databaseConnection))
+                {
+                    //fortæller at det et en stored procedure der skal kaldes
+                    storedProcedureCommand.CommandType = System.Data.CommandType.StoredProcedure;
+                    storedProcedureCommand.Parameters.AddWithValue("@StudentId", studentId);
+
+                    using (SqlDataReader reader = storedProcedureCommand.ExecuteReader())
+                    {
+                        if (reader.HasRows)
+                        {
+                            while (reader.Read())
+                            {
+                                string navn = reader.GetString(0);
+                                int studentid = reader.GetInt32(1);
+                                int grade = reader.GetInt32(2);
+
+                                var StudentGrade = new StudentGrade()
+                                {
+                                    StudentId = studentid,
+                                    Navn = navn,
+                                    Grade = grade
+                                };
+
+                                result.Add(StudentGrade);
+                            }
+                        }
+                    }
+                }
+            }
+
+            return result;
+        }
+
+
+
+        public static void InsertNewStudent(string navn, string mobilnr)
+        {
+            string sql = "Insert INTO Student (Name,mobilnr) values (@navn,@mobilnr)";
+            using (var databaseConnection = new SqlConnection(conn))
+            {
+                databaseConnection.Open();
+                using (var insertCommand = new SqlCommand(sql, databaseConnection))
+                {
+                    //fortæller at det et en stored procedure der skal kaldes
+                    insertCommand.CommandType = System.Data.CommandType.Text;
+                    insertCommand.Parameters.AddWithValue("@Navn", navn);
+                    insertCommand.Parameters.AddWithValue("@MobilNr", mobilnr);
+
+                    int rowsaffected = insertCommand.ExecuteNonQuery();
+
+                    Console.WriteLine($"$Insert : {rowsaffected}");
+                }
+            }
+        }
+
+
+        public static void InsertNewStudentStoredProcedure(string navn, string mobilnr)
+        {
+            string sqlStoredProcedure = "AddPerson";
+            using (var databaseConnection = new SqlConnection(conn))
+            {
+                databaseConnection.Open();
+                using (var storedProcedureCommand = new SqlCommand(sqlStoredProcedure, databaseConnection))
+                {
+                    //fortæller at det et en stored procedure der skal kaldes
+                    storedProcedureCommand.CommandType = System.Data.CommandType.StoredProcedure;
+                    storedProcedureCommand.Parameters.AddWithValue("@Name", navn);
+                    storedProcedureCommand.Parameters.AddWithValue("@MobilNr", mobilnr);
+                    
+                    int rowaffected = storedProcedureCommand.ExecuteNonQuery();
+
+                    Console.WriteLine($"$Insert : {rowaffected}");
+                }
+            }
+        }
+
 
 
     }

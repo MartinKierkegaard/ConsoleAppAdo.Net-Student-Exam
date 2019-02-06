@@ -9,12 +9,22 @@ namespace ConsoleAppAdo.Net_Student_Exam
         {
             Console.WriteLine("Hello World!");
 
+
+            FacadeStudent.InsertNewStudentStoredProcedure("My","34566");
+
+            FacadeStudent.InsertNewStudent("Tom", "37762");
+
+
+            foreach (var studentgrade in FacadeStudent.GetSpecificStudentsGrades(230))
+            {
+                Console.WriteLine(studentgrade);
+            }
+
             List<Student> liste = new List<Student>();
 
-            liste = FacadeStudent.GetAllStudents();
 
 
-            foreach (var item in liste)
+            foreach (var item in FacadeStudent.GetAllStudents())
             {
                 Console.WriteLine($"navn: {item.Navn} mobilnr: {item.MobilNr} ");
             }
