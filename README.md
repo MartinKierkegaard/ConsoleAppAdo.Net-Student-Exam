@@ -1,7 +1,7 @@
 # ConsoleAppAdo.Net-Student-Exam
 Eksempel på brug af Ado.net til at kalde en database på Azure
 
-##I Facade Student er der følgende metoder
+## I Facade Student er der følgende metoder
 * GetAllStudent, som henter alle studerende vai SQL
 * GetAllStudentGrade, som henter alle studerende og karakter vai stored procedure
 * GetSpecificStudentsGrades(int studentId), som henter en spcifik studerende via stored procedure
